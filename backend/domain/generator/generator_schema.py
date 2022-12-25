@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class User(BaseModel):
     id: int
     name: str
-    serial_number: int
+    service_number: int
     create_date: datetime.datetime
 
     class Config:

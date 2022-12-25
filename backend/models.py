@@ -8,5 +8,5 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    serial_number = Column(Integer, nullable=False)
+    service_number = Column(Integer, nullable=False)
     create_date = Column(DateTime, nullable=False)
