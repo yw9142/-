@@ -16,13 +16,13 @@ def user_list(db: Session = Depends(get_db)):
     return _user_list
 
 
-@router.post("/create/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-def user_create(user_id: int,
-                _user_create: generator_schema.UserCreate,
-                db: Session = Depends(get_db)):
+@router.get("/detail/{user_id}", response_model=generator_schema.User)
+def user_detail(user_id: int, db: Session = Depends(get_db)):
+    user = user_crud.get_user(db, user_id=user_id)
+    return user
 
-    # create User
-    user = user_crud.get_user_list(db, id=user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    user_crud.create_user(db, user=user, user_create=_user_create)
+
+@router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
+def user_create(_user_create: generator_schema.UserCreate,
+                db: Session = Depends(get_db)):
+    user_crud.create_user(db=db, user_create=_user_create)

@@ -13,13 +13,13 @@ def get_user_list(db: Session):
     return user_list
 
 
-# def get_user(db: Session, user_id: int):
-#     user = db.query(User).get(user_id)
-#     return user
+def get_user(db: Session, user_id: int):
+    user = db.query(User).get(user_id)
+    return user
 
 
-def create_user(db: Session, user: User, user_create: UserCreate):
-    db_user = User(name=user,
+def create_user(db: Session, user_create: UserCreate):
+    db_user = User(name=user_create.name,
                    service_number=user_create.service_number,
                    create_date=datetime.now())
 
