@@ -25,3 +25,4 @@ def create_user(db: Session, user_create: UserCreate):
 
     db.add(db_user)
     db.commit()
+
