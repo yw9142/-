@@ -8,7 +8,7 @@ from models import User
 
 def get_user_list(db: Session):
     user_list = db.query(User) \
-        .order_by(User.create_date.desc()) \
+        .order_by(User.service_number.asc()) \
         .all()
     return user_list
 
@@ -26,3 +26,9 @@ def create_user(db: Session, user_create: UserCreate):
     db.add(db_user)
     db.commit()
 
+
+#   Session.query(db_user).order_by(db_user.service_number.desc())
+
+def delete_user(db: Session, db_user: User):
+    db.delete(db_user)
+    db.commit()
